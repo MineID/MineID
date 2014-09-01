@@ -19,7 +19,7 @@ This step is optional but highly recommended.
 ```
 cd MineID
 virtualenv .venv
-soure .venv/bin/activate
+source .venv/bin/activate
 ```
 
 **3. Install dependencies and sync database**
