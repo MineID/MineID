@@ -1,0 +1,18 @@
+{% extends 'base_form.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Update Application" %}{% endblock %}
+
+{% block content %}
+    {% url "app:list" as cancel_url %}
+    {% with form_submit=_('Save') %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block form_buttons %}
+    <a href="{% url "app:delete" object.pk %}" class="btn btn-danger btn-xs pull-right">{% bootstrap_icon "remove" %} {% trans "Delete Application" %}</a>
+    {{ block.super }}
+{% endblock %}

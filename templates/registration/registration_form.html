@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Sign up" %}{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    {% url "auth_login" as login_url %}
+    <p>{% blocktrans %}If you already have an account, <a href="{{ login_url }}">click here</a> to sign in.{% endblocktrans %}</p>
+    <br>
+    <form method="POST" action="{{ request.path }}{% if next %}?next={{ next|urlencode }}{% endif %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit=_('Continue') reset=_("Cancel") %}{% endbuttons %}
+    </form>
+{% endblock %}

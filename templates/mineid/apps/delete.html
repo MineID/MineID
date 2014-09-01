@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <h1 class="page-header">{% trans "Delete application" %}</h1>
+    <form method="POST" action="{{ request.path }}">
+        {% csrf_token %}
+        <div class="alert alert-warning">{% trans "Be careful, this action cannot be reverted." %}</div>
+        <p>{% trans "Are you sure you want to delete this application?" %} <input type="submit" class="btn btn-danger btn-xs" value="{% trans "Yes, delete this application" %}"></p>
+        <p><a href="{% url "app:list" %}" class="btn btn-default">{% trans "No, thanks" %}</a></p>
+    </form>
+{% endblock %}

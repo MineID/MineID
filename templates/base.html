@@ -1,0 +1,115 @@
+{% extends 'bootstrap.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block bootstrap3_content %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url "home" %}#page-top">MineID.org</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="{% url "home" %}#page-top"></a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url "app:list" %}">{% trans "Applications" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "password_change" %}">{% trans "Change password" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "auth_logout" %}">{% trans "Sign out" %}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-scroll">
+                            <a href="{% url "home" %}#about">{% trans "about" %}</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{% url "home" %}#contact">{% trans "how it works" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "auth_login" %}">{% trans "sign in" %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    {% bootstrap_messages %}
+
+    {% block content_wrapper %}
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    {% block content %}
+                        {% block content_title %}
+                            <h1 class="page-header">{% block title %}{% endblock %}</h1>
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>{% trans "Created in partnership with" %}</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <h4><a href="http://www.playgrid.com">PlayGrid</a></h4>
+                            </li>
+                            <li>
+                                <h4><a href="http://www.getnodecraft.com">Nodecraft</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>{% trans "Review the code and contribute!" %}</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://github.com/MineID/MineID" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+{% endblock %}

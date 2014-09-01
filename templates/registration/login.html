@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Sign in" %}{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">{% trans "Sign in" %}<br><small>{% trans "using your email or Minecraft account" %}</h1>
+    {% url "registration_register" as registration_url %}
+    {% with next=next|urlencode %}
+        {% with registration_url=registration_url|add:"?next="|add:next %}
+            <p>{% blocktrans %}If you don't have an account, <a href="{{ registration_url }}">click here</a> to create one.{% endblocktrans %}</p>
+        {% endwith %}
+    {% endwith %}
+    <br>
+    <form method="POST" action="{{ request.path }}?next={{ next|urlencode }}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit=_('Continue') reset=_("Cancel") %}
+        <a href="{% url "password_reset" %}" class="pull-right">{% trans "Forgot your password?" %}</a>
+        {% endbuttons %}
+    </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <form method="POST" action="{{ request.path }}">
+        {% csrf_token %}
+        <div class="alert alert-warning">{% trans "Be careful, this action cannot be reverted." %}</div>
+        <p>{% trans "Are you sure you want to delete this Minecraft account?" %} <input type="submit" class="btn btn-danger btn-xs" value="{% trans "Yes, delete this Minecraft account" %}"></p>
+        <p><a href="{% url "minecraft:list" %}" class="btn btn-default">{% trans "No, thanks" %}</a></p>
+    </form>
+{% endblock %}

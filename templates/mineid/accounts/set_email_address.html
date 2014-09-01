@@ -1,0 +1,12 @@
+{% extends 'base_form.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Set Email Address" %}{% endblock %}
+
+{% block content %}
+    {% with form_submit=_('Save') cancel_url="" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

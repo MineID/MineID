@@ -1,0 +1,12 @@
+{% extends 'base_form.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Register an Application" %}{% endblock %}
+
+{% block content %}
+    {% url "app:list" as cancel_url %}
+    {% with form_submit=_('Register') %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

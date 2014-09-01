@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Welcome!" %}{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <p>{% trans "Your account was successfully activated!" %}</p>
+    <p>
+        <a href="{% url "auth_login" %}">{% trans "Click here to proceed" %}</a>
+    </p>
+{% endblock %}

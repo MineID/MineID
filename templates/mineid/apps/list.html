@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <h1 class="page-header">
+        {% block title %}{% trans "Applications" %}{% endblock %}
+        {% if object_list %}
+            <a href="{% url "app:create" %}" class="btn btn-success pull-right">{% trans "Register a new application" %}</a>
+        {% endif %}
+    </h1>
+    {% if object_list %}
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "URL" %}</th>
+                    <th>{% trans "Client ID" %}</th>
+                    <th>{% trans "Client Secret" %}</th>
+                    <th>{% trans "Client Type" %}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in object_list %}
+                <tr>
+                    <td>{{ client.name }}</td>
+                    <td>{{ client.url }}</td>
+                    <td>{{ client.client_id }}</td>
+                    <td>●●●●●●●● <a href="{% url "app:credentials" client.pk %}" class="btn btn-xs btn-default">{% trans "View" %}</a></td>
+                    <td>{{ client.client_type }}</td>
+                    <td><a href="{% url "app:update" client.pk %}" class="btn btn-xs btn-default">{% trans "Edit" %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning">
+            {% trans "You do not have any applications registered." %}
+        </div>
+        <a href="{% url "app:create" %}" class="btn btn-success">{% trans "Register your first application" %}</a>
+    {% endif %}
+{% endblock %}

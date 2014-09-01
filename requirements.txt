@@ -1,0 +1,10 @@
+-r requirements_core.txt
+
+# The following packages are used exclusively in the production configuration.
+# 
+# Use requirements_core.txt for local development:
+# 
+#     pip install -r requirements_core.txt
+
+gevent==1.0.1
+greenlet==0.4.2

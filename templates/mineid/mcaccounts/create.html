@@ -1,0 +1,19 @@
+{% extends 'base_form.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Add a Minecraft Account" %}{% endblock %}
+
+{% block content %}
+    {% url "minecraft:list" as cancel_url %}
+    {% with form_submit=_('Add') %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block form %}
+    {% bootstrap_field form.username %}
+    <input style="display:none"><!-- Prevents autofill -->
+    {% bootstrap_field form.password %}
+{% endblock %}

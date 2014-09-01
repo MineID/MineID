@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load scope %}
+{% load bootstrap3 %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        {% if not error %}
+            <h1>{{ client.name }}</h1>
+            <p>{% trans "would like to access your data with the following permissions:" %}</p>
+            <ul class="list-group">
+                {% for permission in oauth_data.scope|scopes %}
+                    <li class="list-group-item" style="text-align:left">
+                        {% if permission == "retrieve_accounts" %}
+                        {% bootstrap_icon "download" %} {% trans "Retrieve email address, player name, and player unique id for your Minecraft accounts" %}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <form method="post" action="{% url "oauth2:authorize" %}">
+                {% csrf_token %}
+                {% bootstrap_form_errors form %}
+                <fieldset>
+                    <div style="display: none;" />
+                        <select type="select" name="scope" multiple="multiple">
+                        {% for scope in oauth_data.scope|scopes %}
+                            <option value="{{ scope }}" selected="selected">{{ scope }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    {% url "switch_account" as switch_account_url %}
+                    {% with switch_account_url=switch_account_url|add:"?next="|add:request.path %}
+                        <p><small>{% blocktrans with user=request.user.email %}You're logged in as {{ user }}, <a href="{{ switch_account_url }}">click here to switch</a>.{% endblocktrans %}</small></p>
+                    {% endwith %}
+                    <input type="submit" class="btn" value="{% trans "Cancel" %}" />
+                    <input type="submit" class="btn btn-success" name="authorize" value="{% trans "Authorize" %}" />
+                </fieldset>
+            </form>
+        {% else %}
+            {{ error }}
+            {{ error_description }}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load i18n bootstrap3 static %}
+
+{% block title %}MineID.org - Secure Minecraft Authentication{% endblock %}
+
+{% block body_attrs %} id="page-top" class="index"{% endblock %}
+
+{% block content_wrapper %}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{% static "img/MineID.png" %}" alt="">
+                    <br>
+                    <div class="intro-text">
+                        <h1>{% trans "A Secure Minecraft Authentication Service" %}</h1>
+                        <h2>{% trans "an open source collaboration bringing a secure way for users to login to your app or website" %}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>{% trans "About" %}</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>
+{% blocktrans %}MineID is a free OAuth 2.0 authentication service for Minecraft created as a collaboration 
+of sites in order to provide a neutral third party solution allowing Minecraft players to login to any 
+site using their Minecraft credentials.{% endblocktrans %}
+					</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>
+{% blocktrans %}This open-source project was created as a service to the Minecraft community so developers and
+site administrators had a simple way to offer a "Login with Minecraft" option to their
+users. And for users, a trusted and consistent means to authenticate knowing that their
+Minecraft credentials remain secure.{% endblocktrans %}
+					</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="{% url "registration_register" %}" class="btn btn-lg btn-outline">
+                        {% trans "Register Your Application" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>{% trans "How It Works" %}</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                	<p>
+{% blocktrans %}MineID is an OAuth 2.0 provider that provides functionality similar to other OAuth services such as Facebook's "Login with Facebook" button that is common on many sites.{% endblocktrans %}
+					</p>
+					<p>
+{% blocktrans %}While Mojang already provides an authentication service for Minecraft, its service is not OAuth compliant. MineID solves this by providing an OAuth wrapper for Mojang's auth service.{% endblocktrans %}
+                	</p>
+					<p>
+{% blocktrans %}With MineID you can easily add a "Login with Minecraft" button to your site that allows users to create an account and login without your site having to collect and verify the user's credentials.{% endblocktrans %}
+					</p>
+<h3>{% trans "Step 1" %}</h3>
+					<p>
+{% blocktrans %}User opts to signup for an website or app using MineID by pressing a "Sign in with Minecraft" button.{% endblocktrans %}
+					</p>
+<h3>{% trans "Step 2" %}</h3>
+					<p>
+{% blocktrans %}Pressing the Sign in button redirects the user to MineID. If the user is not already authenticated, MineID prompts the user for their Minecraft username and password. The user's credentials are forwarded to Mojang's server for authentication and discarded.{% endblocktrans %}
+					</p>
+					<p>
+
+					</p>
+<h3>{% trans "Step 3" %}</h3>
+					<p>
+{% blocktrans %}Upon successful authentication, MineID stores only the user's Minecraft player name, id, and email address. This information is returned to the application along with a unique access token that verifies the user's identity.{% endblocktrans %}
+					</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

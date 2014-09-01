@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Thank you for signing up!" %}{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <p>{% trans "We sent you an email containing instructions to activate your account." %}</p>
+    {% if next %}
+        <p>{% trans "After activating your account, click in the button below to proceed." %}</p>
+        <p><a href="{{ next }}" class="btn btn-large btn-success">{% trans "Click here to proceed" %}</a></p>
+    {% endif %}
+{% endblock %}

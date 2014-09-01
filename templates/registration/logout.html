@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <p>
+        <a href="{% url "home" %}">{% trans "Click here to proceed" %}</a>
+    </p>
+{% endblock %}

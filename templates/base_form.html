@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block content %}
+    {{ block.super }}
+    {% bootstrap_form_errors form %}
+    <form method="POST" action="{{ request.path }}{% if next %}?next={{ next|urlencode }}{% endif %}">
+        {% csrf_token %}
+        {% block form %}
+            {% bootstrap_form form %}
+        {% endblock %}
+        {% block form_buttons %}
+            {% buttons submit=form_submit|default:_('Save') %}
+                {% if cancel_url %}
+                    {% trans "or" %}
+                    <a href="{{ cancel_url }}">{{ form_cancel|default:_('Cancel') }}</a>
+                {% endif %}
+            {% endbuttons %}
+        {% endblock %}
+    </form>
+{% endblock %}
