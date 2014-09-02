@@ -3,14 +3,20 @@
 {% load i18n %}
 {% load scope %}
 {% load bootstrap3 %}
+{% load static %}
 
 {% block menu %}{% endblock %}
 
+{% block bootstrap3_extra_head %}
+    <link href="{% static "css/authorize.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
+    <h1 class="page-header">{% if error %}{% trans "Confirm Authorization" %}{% endif %}</h1>
     <div class="jumbotron">
         {% if not error %}
-            <h1>{{ client.name }}</h1>
-            <p>{% trans "would like to access your data with the following permissions:" %}</p>
+            <h2>{{ client.name }}</h2>
+            <p class="desc">{% trans "would like to access your data with the following permissions:" %}</p>
             <ul class="list-group">
                 {% for permission in oauth_data.scope|scopes %}
                     <li class="list-group-item" style="text-align:left">
@@ -33,10 +39,12 @@
                     </div>
                     {% url "switch_account" as switch_account_url %}
                     {% with switch_account_url=switch_account_url|add:"?next="|add:request.path %}
-                        <p><small>{% blocktrans with user=request.user.email %}You're logged in as {{ user }}, <a href="{{ switch_account_url }}">click here to switch</a>.{% endblocktrans %}</small></p>
+                        <p class="desc"><small>{% blocktrans with user=request.user.email %}You're logged in as {{ user }}, <a href="{{ switch_account_url }}">click here to switch</a>.{% endblocktrans %}</small></p>
                     {% endwith %}
-                    <input type="submit" class="btn" value="{% trans "Cancel" %}" />
-                    <input type="submit" class="btn btn-success" name="authorize" value="{% trans "Authorize" %}" />
+                    <div class="desc">
+                        <input type="submit" class="btn" value="{% trans "Cancel" %}" />
+                        <input type="submit" class="btn btn-success" name="authorize" value="{% trans "Authorize" %}" />
+                    </div>
                 </fieldset>
             </form>
         {% else %}

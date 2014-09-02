@@ -25,27 +25,29 @@
                     <li class="hidden">
                         <a href="{% url "home" %}#page-top"></a>
                     </li>
-                    {% if request.user.is_authenticated %}
-                        <li>
-                            <a href="{% url "app:list" %}">{% trans "Applications" %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url "password_change" %}">{% trans "Change password" %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url "auth_logout" %}">{% trans "Sign out" %}</a>
-                        </li>
-                    {% else %}
-                        <li class="page-scroll">
-                            <a href="{% url "home" %}#about">{% trans "about" %}</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="{% url "home" %}#contact">{% trans "how it works" %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url "auth_login" %}">{% trans "sign in" %}</a>
-                        </li>
-                    {% endif %}
+                    {% block menu %}
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="{% url "app:list" %}">{% trans "Applications" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url "password_change" %}">{% trans "Change password" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url "auth_logout" %}">{% trans "Sign out" %}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-scroll">
+                                <a href="{% url "home" %}#about">{% trans "about" %}</a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="{% url "home" %}#contact">{% trans "how it works" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url "auth_login" %}">{% trans "sign in" %}</a>
+                            </li>
+                        {% endif %}
+                    {% endblock %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
