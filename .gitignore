@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+
+# Project
+db.sqlite3
+database.sqlite
+
+media/*
+!media/.not_empty
+/static
+
+/venv
+activate
+/.settings
