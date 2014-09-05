@@ -3,6 +3,7 @@ import os
 from .settings import *
 
 DEBUG = True
+SSLIFY_DISABLE = True
 
 # Local database
 DATABASES = {

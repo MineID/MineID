@@ -13,6 +13,7 @@ django-bootstrap3==4.10.0
 django-oauth2-provider==0.2.6.1
 django-registration==1.0
 django-braces==1.4.0
+django-sslify==0.2.3
 
 # Solves transparency issue
 # https://github.com/mariocesar/sorl-thumbnail/pull/274
