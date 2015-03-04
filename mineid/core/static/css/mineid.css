@@ -292,6 +292,9 @@ footer,
 footer a {
     color: #fff;
 }
+footer a:hover {
+    color: rgb(70, 111, 61);
+}
 
 footer h3 {
     margin-bottom: 30px;
